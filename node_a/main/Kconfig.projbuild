@@ -1,0 +1,11 @@
+menu "GSA-CAN Node A"
+
+    config GSA_CAN_TX_GPIO
+        int "CAN TX GPIO"
+        default 15
+
+    config GSA_CAN_RX_GPIO
+        int "CAN RX GPIO"
+        default 16
+
+endmenu
