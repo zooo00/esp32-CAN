@@ -6,7 +6,7 @@ Wireless CAN telemetry for the user's BMW R1200GS Adventure 2010 (K255). Node A 
 - Firmware for both nodes is written and **compiles with no warnings**. It has **never run on hardware**: nothing has been flashed, and the A→B link is untested.
 - `tools/decode.py` has been tested with hand-made frame lines only.
 - Nothing is connected to the bike yet. "Step 0" (measuring where CAN is available, see SPEC.md) hasn't been done.
-- Git repo on branch `main`, no remote. Initial commit e69f17f.
+- Git: branch `main`, remote https://github.com/zooo00/esp32-CAN (public). Tag v0.1.0 = first barebones version.
 
 ## Next steps
 1. Flash both boards at the desk: `make a PORT=…`, `make b PORT=…`. Type `stub on` in Node A's console and confirm Node B prints `# source=STUB`, `# link up` and frame lines. Also check Node A's stats line (rx/sent/drop).
