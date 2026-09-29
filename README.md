@@ -72,3 +72,6 @@ tools/decode.py          adds signal names/values to Node B's output
 Each BLE notification is a 2-byte header `[version][source]` followed by up to 14 frames of 17 bytes:
 `uint32 ts_ms, uint32 id, uint8 dlc, uint8 d[8]`, little-endian. Bit 31 of `id` = extended ID, bit 30 = RTR.
 Node A sends a batch when it is full or 20 ms after its first frame.
+
+## License
+MIT, see [LICENSE](LICENSE). `reference/BMW_R1200GS_K25_CAN.xml` comes from [RealDash-extras](https://github.com/janimm/RealDash-extras) and is public domain (Unlicense).
