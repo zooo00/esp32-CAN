@@ -42,7 +42,7 @@ class Signal:
             return self.enum.get(str(v), f"?{v}")
         if self.expr is not None:
             try:
-                v = eval(self.expr, {"floor": math.floor}, {"V": v})
+                v = eval(self.expr, {"__builtins__": {}, "floor": math.floor}, {"V": v})
             except Exception as e:  # noqa: BLE001 - show the problem inline, keep going
                 return f"<{e}>"
         if isinstance(v, bool):
@@ -55,6 +55,9 @@ class Signal:
 def to_python(expr):
     """RealDash conversion -> Python expression. Only V, numbers, + - * / ( ), Floor, =, ||, && are used."""
     if not expr:
+        return None
+    if not re.fullmatch(r"[V0-9a-fA-FxX.\s+\-*/()=|&]*", expr.replace("Floor", "")):
+        print(f"# decode.py: ignoring unexpected conversion {expr!r}", file=sys.stderr)
         return None
     e = expr.replace("||", " or ").replace("&&", " and ").replace("Floor", "floor")
     e = re.sub(r"(?<![<>!=])=(?!=)", "==", e)
