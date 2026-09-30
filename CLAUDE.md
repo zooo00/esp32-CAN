@@ -9,10 +9,13 @@ Wireless CAN telemetry for the user's BMW R1200GS Adventure 2010 (K255). Node A 
 - Git: branch `main`, remote https://github.com/zooo00/esp32-CAN (public). Tags: v0.1.0 = first barebones version, v0.1.1 = + MIT license. `main` after v0.1.1 has the decode.py eval hardening (untagged).
 
 ## Git rules (the user works from several computers and AI tools)
+Goal: GitHub `main` is always a working snapshot — continuing on another machine = `git pull && . ~/esp/esp-idf/export.sh`.
 - Pull before starting: `git switch main && git pull` (the user has `pull.ff only` set).
-- Push before stopping. Push tags explicitly: `git push origin <tag>`.
-- Never force-push, amend, or rebase commits that are already on GitHub.
-- Work branches go through a PR; after merging, delete the branch.
+- Commit small, coherent steps directly on `main`; each pushed state should compile with `make build`.
+- Push after each logical step and before stopping. Stopping mid-task? Push a plain `wip:` commit rather than leave uncommitted changes.
+- Never force-push, amend, or rebase commits that are already on GitHub (so later work stacks over a `wip:`, never amends it away).
+- Tags for milestones only; push them explicitly: `git push origin <tag>`.
+- Work branch + PR is the exception — big changes worth reviewing before merge. After merging, delete the branch.
 
 ## Next steps
 1. Flash both boards at the desk: `make a PORT=…`, `make b PORT=…`. Type `stub on` in Node A's console and confirm Node B prints `# source=STUB`, `# link up` and frame lines. Also check Node A's stats line (rx/sent/drop).
